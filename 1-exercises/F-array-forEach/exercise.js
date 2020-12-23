@@ -7,7 +7,29 @@
   An array with numbers 1-15 has been provided.
 */
 
+function fizzBuzz(num) {
+  output = "";
+  let isException = false;
+  if (num % 3 == 0) {
+    isException = true;
+    output += "Fizz";
+  }
+
+  if (num % 5 == 0) {
+    isException = true;
+    output += "Buzz"
+  }
+
+  if (!isException) {
+    output = num;
+  }
+
+  console.log(output);
+}
+
 var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+
+arr.forEach(fizzBuzz);
 
 /* EXPECTED OUTPUT */
 

@@ -22,8 +22,39 @@ PasswordValidationResult=  [false, false, false, false, true]
 
 */
 
-function validatePasswords(passwords) {
+function containsUpperCase(password) {
+  let arrRep = password.split("");
+  let specialCharacters = ["!", "#", "$", "%", ".", "*", "&"];
+  let doesContainCapital = arrRep.some(character => character == character.toUpperCase() && (!specialCharacters.includes(character)) && isNaN(character));
+  return doesContainCapital;
+}
 
+function containsLowerCase(password) {
+  let arrRep = password.split("");
+  let doesContainLowerCase = arrRep.some(character => character == character.toLowerCase());
+  return doesContainLowerCase;
+}
+
+function containsNumber(password) {
+  let arrRep = password.split("");
+  let doesContainNumber = arrRep.some(character => !isNaN(character));
+  return doesContainNumber;
+}
+
+function containsSpecialCharacters(password) {
+  let specialCharacters = ["!", "#", "$", "%", ".", "*", "&"];
+  let arrRep = password.split("");
+  let doesContainSpecial = arrRep.some(character => specialCharacters.includes(character));
+  return doesContainSpecial;
+}
+
+function isValidPassword(password) {
+  let isValid = password.length >= 5 && containsUpperCase(password) && containsLowerCase(password) && containsNumber(password) && containsSpecialCharacters(password);
+  return isValid;
+}
+
+function validatePasswords(passwords) {
+  return passwords.map((password, index) => (passwords.indexOf(password) == index) && isValidPassword(password));
 }
 
 /* ======= TESTS - DO NOT MODIFY ===== */
@@ -34,21 +65,21 @@ const passwords2 = ["StUFf27%", "Pl3nty!", "Jai33", "shajsaUA**&&", "Pl3nty!"]
 const util = require('util');
 
 function test(test_name, actual, expected) {
-    let status;
-    if (util.isDeepStrictEqual(actual, expected)) {
-        status = "PASSED";
-    } else {
-        status = `FAILED: expected: ${util.inspect(expected)} but your function returned: ${util.inspect(actual)}`;
-    }
+  let status;
+  if (util.isDeepStrictEqual(actual, expected)) {
+    status = "PASSED";
+  } else {
+    status = `FAILED: expected: ${util.inspect(expected)} but your function returned: ${util.inspect(actual)}`;
+  }
 
-    console.log(`${test_name}: ${status}`);
+  console.log(`${test_name}: ${status}`);
 }
 
 test(
   "validatePasswords function works - case 1",
   validatePasswords(passwords1),
   [false, false, true, false, false]
- );
+);
 
 test(
   "validatePasswords function works - case 2",

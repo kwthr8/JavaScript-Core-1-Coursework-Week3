@@ -11,7 +11,14 @@
     Some string methods that might help you here are .replace() and .substring(). 
 */
 
-function safeLevels() {}
+function safeLevels(levels) {
+  return levels.find(level => {
+    let numericLevel = Number(level.replace("%", ""));
+    return numericLevel > 19.5 && numericLevel < 23.5;
+  });
+
+
+}
 
 /* ======= TESTS - DO NOT MODIFY ===== */
 

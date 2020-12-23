@@ -13,7 +13,7 @@
 let story =
   "I like dogs. One day I went to the park and I saw 10 dogs. It was a great day.";
 
-let result = story.replace("", "");
+let result = story.replace("dog", "cat").replace("dog", "cat").replace("10", "100000").replace("great", "brilliant").replace("day", "night").replace("day", "night");
 
 /* EXPECTED OUTPUT */
 
@@ -41,6 +41,6 @@ test(
 
 test(
   "2. The result of the replace is correct",
-  story,
+  result,
   "I like cats. One night I went to the park and I saw 100000 cats. It was a brilliant night."
 );

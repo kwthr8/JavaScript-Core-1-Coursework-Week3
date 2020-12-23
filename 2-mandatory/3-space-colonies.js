@@ -15,7 +15,9 @@
   
 */
 
-function colonisers() {}
+function colonisers(voyagers) {
+  return voyagers.filter(voyager => voyager.startsWith("A") && voyager.endsWith("family"));
+}
 
 /* ======= TESTS - DO NOT MODIFY ===== */
 
